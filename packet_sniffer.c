@@ -68,29 +68,36 @@ int main(int argc, char *argv[]) {
 	
 	// There is probably a better way to make my path
 	strcat(path, "/");
-	//printf("%s\n", path);
+	printf("%s\n", path);
 	
+	//Create the path directory we have made
+	if (1 == mkdir(path, 0777)) {
+		printf("Error in creation of directory: %s", path);
+		return(2);
+	}
+	
+	//Todo - make this program run until an interupt
 	while (i < 25) {
-		//Create the path directory we have made
-		if (1 == mkdir(path, 0777)) {
-			printf("Error in creation of directory: %s", path);
-			break;
-		}
+		
+		printf("path variable = %s\n", path);
 		
 		// cast? our int to a char so we can concat to path
 		char str[21] = "";
 		sprintf(str, "%d", i);
 		//printf("%s\n", str);
+		char local_path[MAX_PATH_LENGTH];
+		strcpy(local_path, path);
+		printf("%s\n", local_path);
 		// concat our previous directory pathing with the file number
-		strcat(path, str);
+		strcat(local_path, str);
 		
 		
-		printf("Dumping sniffed packets to : %s\n", path);
+		printf("Dumping sniffed packets to : %s\n", local_path);
 		
 		//open file for dumping
-		pcap_dumper_t *dump_file = pcap_dump_open(handle, path);
+		pcap_dumper_t *dump_file = pcap_dump_open(handle, local_path);
 		//start capture loop and pass dump_file
-		pcap_loop(handle, -1, got_packet, (u_char *)dump_file);
+		pcap_loop(handle, 5000, got_packet, (u_char *)dump_file);
 		//close dump_file and save stream
 		pcap_dump_close(dump_file);
 		

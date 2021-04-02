@@ -18,7 +18,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 }
 
 
-int main(int argc, char *argv[]) {
+int main(void) {
 	
 	pcap_t *handle;			/* Session handle */
 	char *dev;			/* The device to sniff on */
@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
 		pcap_dumper_t *dump_file = pcap_dump_open(handle, local_path);
 		
 		//Start capture loop and pass dump_file
-		pcap_loop(handle, 10000, got_packet, (u_char *)dump_file);
+		pcap_loop(handle, 1000, got_packet, (u_char *)dump_file);
 		
 		//Close dump_file and save stream
 		pcap_dump_close(dump_file);

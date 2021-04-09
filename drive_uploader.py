@@ -34,25 +34,27 @@ service = build('drive', 'v3', credentials=creds)
 #Infinite loop to grab all files that currently exist in the complete_dumps dir
 path = os.getcwd()
 
+while True:
+	#make this section grab files from dir in final
+	file_names = os.listdir(path+'/complete_dumps')
+	mime_type = 'application/vnd.tcpdump.pcap'
 
-#make this section grab files from dir in final
-file_names = os.listdir(path+'/complete_dumps')
-mime_type = 'application/vnd.tcpdump.pcap'
- 
-for file_name in file_names:
-	print 'uploading file: {0}'.format(file_name)
-	file_metadata = {
-		'name': file_name
-	}
- 
-	media = MediaFileUpload('./complete_dumps/{0}'.format(file_name), mimetype=mime_type)
- 
-	service.files().create(
-		body=file_metadata,
-		media_body=media,
-		fields='id'
-	).execute()
-	
-	#Remove file after upload
-	print 'deleting file: {0}'.format(file_name)
-	os.remove(path+'/complete_dumps/'+filename)
+	for file_name in file_names:
+		print 'uploading file: {0}'.format(file_name)
+		file_metadata = {
+			'name': file_name
+		}
+	 
+		media = MediaFileUpload('./complete_dumps/{0}'.format(file_name), mimetype=mime_type)
+	 
+		service.files().create(
+			body=file_metadata,
+			media_body=media,
+			fields='id'
+		).execute()
+		
+		#Remove file after upload
+		print 'deleting file: {0}'.format(file_name)
+		#os.remove(path+'/complete_dumps/'+filename)
+		#if someone was able to modify filename this would be a boo boo
+		os.system('sudo rm -r complete_dumps/'+'"'+file_name+'"')

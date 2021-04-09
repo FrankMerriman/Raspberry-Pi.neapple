@@ -1,5 +1,6 @@
 from googleapiclient.http import MediaFileUpload
 import os.path
+import os
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -29,20 +30,25 @@ if not creds or not creds.valid:
         token.write(creds.to_json())
  
 service = build('drive', 'v3', credentials=creds)
- 
+
+#Infinite loop to grab all files that currently exist in the complete_dumps dir
+path = os.getcwd()
+
+
 #make this section grab files from dir in final
-file_names = ['plzwork.txt']
+file_names = os.listdir(path+'/complete_dumps')
 mime_type = 'application/vnd.tcpdump.pcap'
  
 for file_name in file_names:
-    file_metadata = {
-        'name': file_name
-    }
+	print 'uploading file: {0}'.format(file_name)
+	file_metadata = {
+		'name': file_name
+	}
  
-    media = MediaFileUpload('./complete_dumps/{0}'.format(file_name), mimetype=mime_type)
+	media = MediaFileUpload('./complete_dumps/{0}'.format(file_name), mimetype=mime_type)
  
-    service.files().create(
-        body=file_metadata,
-        media_body=media,
-        fields='id'
-    ).execute()
+	service.files().create(
+		body=file_metadata,
+		media_body=media,
+		fields='id'
+	).execute()

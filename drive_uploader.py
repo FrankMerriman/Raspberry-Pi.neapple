@@ -52,3 +52,7 @@ for file_name in file_names:
 		media_body=media,
 		fields='id'
 	).execute()
+	
+	#Remove file after upload
+	print 'deleting file: {0}'.format(file_name)
+	os.remove(path+'/complete_dumps/'+filename)

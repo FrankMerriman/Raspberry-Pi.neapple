@@ -57,24 +57,37 @@ int main(void) {
 		printf("Error in creation of directory: %s", path);
 		return(2);
 	}
+	
+	//Create path for moving completed dumps to
+	char final_path[MAX_PATH_LENGTH] = "complete_dumps/";
+	//Create the path directory we have made
+	if (1 == mkdir(final_path, 0777)) {
+		printf("Error in creation of directory: %s", final_path);
+		return(2);
+	}
 
-	//Todo - make this program run until an interupt
 	while (1 == 1) {
 		
-		//Create a local path variable to point towards directory
+		//Create a local path variable to point towards directory we dump to
 		char local_path[MAX_PATH_LENGTH];
 		strcpy(local_path, path);
+		
+		//Create a local path variable that we will be moving file to at end
+		char local_final_path[MAX_PATH_LENGTH];
+		strcpy(local_final_path, final_path);
 		
 		//Get system time
 		time_t ltime;
 		time(&ltime);
 		char *curr_time = ctime(&ltime);
 		
-		//Concat time to local path
+		//Concat time to local paths
 		strcat(local_path, curr_time);
+		strcat(local_final_path, curr_time);
 		
 		//Remove newline that is added by ctime
 		local_path[strlen(local_path)-1] = '\0';
+		local_final_path[strlen(local_final_path)-1] = '\0';
 		
 		printf("Dumping sniffed packets to : %s\n", local_path);
 		
@@ -82,10 +95,13 @@ int main(void) {
 		pcap_dumper_t *dump_file = pcap_dump_open(handle, local_path);
 		
 		//Start capture loop and pass dump_file
-		pcap_loop(handle, 1000, got_packet, (u_char *)dump_file);
+		pcap_loop(handle, 2000, got_packet, (u_char *)dump_file);
 		
 		//Close dump_file and save stream
 		pcap_dump_close(dump_file);
+		
+		//Take the completed file and move it to completed directory
+		rename(local_path, local_final_path);
 		
 	}
 	

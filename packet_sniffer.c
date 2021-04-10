@@ -10,14 +10,15 @@
 
 void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet) {
 
-	//add packet to file
+	//Add packet to file
 	pcap_dump(args, header, packet);
-	//print its length
+	
+	//Print its length
 	//printf("--- Jacked a packet with length of [%d]\n", header->len);
 }
 
 
-int main(int argc, char *argv[]) {
+int main(void) {
 	
 	pcap_t *handle;			/* Session handle */
 	char *dev;			/* The device to sniff on */
@@ -27,48 +28,29 @@ int main(int argc, char *argv[]) {
 	bpf_u_int32 mask;		/* Our netmask */
 	bpf_u_int32 net;		/* Our IP */
 	//struct pcap_pkthdr header;	/* The header that pcap gives us */
-	//const u_char *packet;		/* The actual packet */
 	
 	// set the device we wish to monitor
 	// wlan1 is the interface of my usb dongle
-	
 	dev = "wlan1";
 	printf("Device: %s\n", dev);
 	
 	
-	/* Find the properties for the device */
+	//Find the properties for the device
 	if (pcap_lookupnet(dev, &net, &mask, errbuf) == -1) {
 		fprintf(stderr, "Couldn't get netmask for device %s: %s\n", dev, errbuf);
 		net = 0;
 		mask = 0;
 	}
 	
-	// Open the session in non-promiscuous mode
+	//Open the session in non-promiscuous mode
 	handle = pcap_open_live(dev, BUFSIZ, 0, 1000, errbuf);
 	if (handle == NULL) {
 		fprintf(stderr, "Couldn't open device %s: %s\n", dev, errbuf);
 		return(2);
 	}
 	
-	int i = 0;
+	//Create path variable
 	char path[MAX_PATH_LENGTH] = "packet_dumps/";
-	//printf("%s\n", path);
-	
-	// Get system time
-	time_t ltime;
-	time(&ltime);
-	char *curr_time = ctime(&ltime);
-	
-	//Remove last two char of array after append ("\n\0" so we have "\0\0")
-	//Then path should be fine
-	strcat(path, curr_time);
-	path[strlen(path)-1] = '\0';
-	//printf("%s\n", path);
-	
-	
-	// There is probably a better way to make my path
-	strcat(path, "/");
-	printf("%s\n", path);
 	
 	//Create the path directory we have made
 	if (1 == mkdir(path, 0777)) {
@@ -76,38 +58,60 @@ int main(int argc, char *argv[]) {
 		return(2);
 	}
 	
-	//Todo - make this program run until an interupt
-	while (i < 25) {
+	//Create path for moving completed dumps to
+	char final_path[MAX_PATH_LENGTH] = "complete_dumps/";
+	//Create the path directory we have made
+	if (1 == mkdir(final_path, 0777)) {
+		printf("Error in creation of directory: %s", final_path);
+		return(2);
+	}
+
+	while (1 == 1) {
 		
-		printf("path variable = %s\n", path);
-		
-		// cast? our int to a char so we can concat to path
-		char str[21] = "";
-		sprintf(str, "%d", i);
-		//printf("%s\n", str);
+		//Create a local path variable to point towards directory we dump to
 		char local_path[MAX_PATH_LENGTH];
 		strcpy(local_path, path);
-		printf("%s\n", local_path);
-		// concat our previous directory pathing with the file number
-		strcat(local_path, str);
 		
+		//Create a local path variable that we will be moving file to at end
+		char local_final_path[MAX_PATH_LENGTH];
+		strcpy(local_final_path, final_path);
+		
+		//Get system time
+		time_t ltime;
+		time(&ltime);
+		char *curr_time = ctime(&ltime);
+		
+		//Concat time to local paths
+		strcat(local_path, curr_time);
+		strcat(local_final_path, curr_time);
+		
+		//Remove newline that is added by ctime
+		local_path[strlen(local_path)-1] = '\0';
+		local_final_path[strlen(local_final_path)-1] = '\0';
 		
 		printf("Dumping sniffed packets to : %s\n", local_path);
 		
-		//open file for dumping
+		//Open file for dumping
 		pcap_dumper_t *dump_file = pcap_dump_open(handle, local_path);
-		//start capture loop and pass dump_file
-		pcap_loop(handle, 5000, got_packet, (u_char *)dump_file);
-		//close dump_file and save stream
+		
+		//Start capture loop and pass dump_file
+		pcap_loop(handle, 2000, got_packet, (u_char *)dump_file);
+		
+		//Close dump_file and save stream
 		pcap_dump_close(dump_file);
 		
+		//Take the completed file and move it to completed directory
+		rename(local_path, local_final_path);
 		
-		i++;
 	}
 	
 	
 	// Close session
 	pcap_close(handle);
+	
+	
+	//While loop that uploads files from directory and then deletes them
+	
 	
 	return(0);
 }

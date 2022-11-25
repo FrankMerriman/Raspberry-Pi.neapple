@@ -6,6 +6,6 @@ This work was done for **learning and research purposes**. Don't use these progr
 #TODO - Reproducible write up
 
 ## Requirements
-- Raspberry Pi
+- Raspberry Pi (I used the 4B)
 - USB wifi dongle
 

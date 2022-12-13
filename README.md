@@ -36,7 +36,13 @@ This project was part of work done for a university security course. It is inten
 
 ### Creating authentication json
 
-### First time set-up
+## Part 3 - Final set-up
+
+### Compiling packet_sniffer.c
+From within the project directory run `make`. This will compile packet_sniffer.c into an executable.
+
+### Generating a valid .pickle file
+
 
 # Running
 After set-up is complete, activating the Pi.neapple is a simple as running two commands from the project directory.

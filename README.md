@@ -12,7 +12,7 @@ This project was part of work done for a university security course. It is inten
 - TP-Link Wireless USB Adapter
   - TL-WN821N
 
-# Guide
+# Set-up
 
 ## Part 1 - Creating a wifi access point
 *Many tutorials I encountered while working on this project took the easy route of using the in-built wifi card of the Rasberry Pi as the access point and providing an internet to the Pi over ethernet. This project differs by using two wifi cards so that the Pi can connect to the interenet without need of an ethernet connection.*
@@ -29,5 +29,14 @@ This project was part of work done for a university security course. It is inten
 
 ## Part 2 - Setting up remote storage
 *While my repository contains the python script necessary for uploading files to google drive, it requires a token unique to your own google account to work*
-### 
+
+### Accessing google cloud
+
+### Creating a project
+
+### Creating authentication json
+
+### First time set-up
+
+## Part 3 - Running the Pi.neapple
 

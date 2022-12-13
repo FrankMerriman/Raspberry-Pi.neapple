@@ -13,7 +13,7 @@ This project was part of work done for a university security course. It is inten
   - TL-WN821N
 - Computer with SD card reader 
 
-# Set-up
+# Preparation
 
 ## Part 1 - Creating a wifi access point
 *Many tutorials I encountered while working on this project took the easy route of using the in-built wifi card of the Rasberry Pi as the access point and providing an internet connection to the Pi through an ethernet cable. This project differs by using two wifi cards so that the Pi can connect to the interenet wirelessly.*
@@ -21,7 +21,7 @@ This project was part of work done for a university security course. It is inten
 ### 1.1 Setting up the Pi
 If the Raspberry Pi being used has never been set up, visit https://www.raspberrypi.com/software/ to download Raspberry Pi OS (formerly referred to as Raspbian). This tutorial was last verified as working on Raspberry Pi OS Bullseye (11).
 
-Start the Pi and go through the normal set-up prompts. If the update that occurs during the set-up fails, make sure to run 
+Start the Pi and go through the normal set up prompts. If the update that occurs during the set up fails, make sure to run 
 ```
 sudo apt update
 ```
@@ -91,7 +91,7 @@ Bcreate two files:
 ### 2.3 Creating authentication json
 
 ## Part 3 - Preparing files for running
-*With the Raspberry Pi and Google Cloud set-up, the final piece of preparation involves getting the provided source code ready to be run.*
+*With the Raspberry Pi and Google Cloud set up, the final piece of preparation involves getting the provided source code ready to be run.*
 
 ### 3.1 Compiling packet_sniffer.c
 From within the project directory run `make`. This will compile packet_sniffer.c into an executable.
@@ -100,7 +100,7 @@ From within the project directory run `make`. This will compile packet_sniffer.c
 
 
 # Running
-After set-up is complete, activating the Pi.neapple is a simple as running two commands from the project directory.
+After set up is complete, activating the Pi.neapple is a simple as running two commands from the project directory.
 - From one terminal run `./packet_sniffer` to activate packet sniffing on wlan1
 - From another terminal run `python3 upload_manager.py` to activate packet uploading to google drive
 

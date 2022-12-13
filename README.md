@@ -152,7 +152,7 @@ Once installed, run `sudo nano /etc/hostapd/hostapd.conf` and copy the following
 ```
 interface=wlan1
 hw_mode=g
-ssid=Pineapple
+ssid=pineapple
 channel=1
 ```
 
@@ -167,19 +167,48 @@ The final part of this step is to enable hostapd. Run the following two commands
  sudo systemctl unmask hostapd.service
  sudo systemctl enable hostapd.service
  ```
-Once you have done so, restart the Pi.
-
-### 1.5 Installing hostadp and dnsmasq
-
-This project requires `hostadp` and `dnsmasq` to function. `hostadp` allows your network interface card (NIC) to act as an access point for other devices. `dnsmasq` allows for the forwarding of
-
-Run:
-```
-sudo apt-get install hostadp
-```
-and
+ 
+### 1.6 Setting up dnsmasq
+`dnsmasq` allows for dns forwarding. Install it by running:
 ```
 sudo apt-get install dnsmasq
+```
+
+Open the config file by running `sudo nano /etc/dnsmasq.conf`. Replace the contents of the file with the below:
+```
+interface=wlan1
+listen-address=192.168.220.1
+server=8.8.8.8
+domain-needed
+bogus-priv
+dhcp-range=192.168.220.80,192.168.220.90,12h
+```
+
+### 1.7 Enabling packet forwarding
+It is also necessary to enable packet forwarding. To do so, run:
+```
+sudo nano /etc/sysctl.conf
+```
+and uncomment this line: `net.ipv4.ip_forward=1`
+![image showing line in terminal](https://user-images.githubusercontent.com/68456230/207248082-a2fd9f71-74b9-43c7-94d7-74d29857fc2e.png)
+
+### 1.8 Iptables config
+The final step is to configure a NAT between `wlan0` and `wlan1`. Do so by running the following commands:
+```
+sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+sudo iptables -A FORWARD -i wlan0 -o wlan1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i wlan1 -o wlan0 -j ACCEPT
+sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
+```
+
+To ensure the iptables are loaded on reboot, run `sudo nano /etc/rc.local` and add the line `iptables-restore < /etc/iptables.ipv4.nat`:
+![Image showing the line pasted into rc.local](https://user-images.githubusercontent.com/68456230/207252737-ba83c351-225f-4997-8a03-7dffcd75f162.png)
+
+### 1.9 Reboot and run
+Restart your Raspberry Pi. Once rebooted, run these two commands (in this order) and you should now be able to see your pineapple wifi network and access the internet through it:
+```
+sudo service hostapd start
+sudo service dnsmasq start
 ```
 
 ## Part 2 - Setting up remote storage

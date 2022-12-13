@@ -53,7 +53,7 @@ If you read the source code for `packet_sniffer.c` you will notice that all the 
 
 You can use either you in-built or external wireless adapter as the access point, provided your external adapter support AP mode (the in-built adapter on the Rasberry Pi 4B definitely supports AP mode). 
 
-If you need to check if your external adapter supports AP mode follow these steps:
+If you need to check AP mode support follow these steps:
 
 1. Run `iwconfig` to figure out which `wlan` corresponds to your external adapter.
 2. Run `iw dev` and figure out which `phy#X` corresponds to your external adapter by referencing their `wlan` value. 

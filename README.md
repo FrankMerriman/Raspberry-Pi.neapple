@@ -7,8 +7,8 @@ This project was part of work done for a university security course. It is inten
 ## Part List
 *This tutorial has only been tested on this specific hardware + software. Presumably you can apply this tutorial to similarlly speced hardware with a bit of technical know-how*
 - Raspberry Pi 4B
--- 4GB RAM
--- Raspbian x.xx
+  - 4GB RAM
+  - Raspbian x.xx
 - TP-Link Wireless USB Adapter
---TL-WN821N
+  -TL-WN821N
 

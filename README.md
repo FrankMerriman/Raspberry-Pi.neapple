@@ -59,7 +59,10 @@ Currently, both `wlan0` and `wlan1` are connecting to the same access point. Thi
 This can be addressed by creating seperate `wpa_supplicant.conf` files for each adapter.
 
 From the home directory, run:
-`cat /etc/wpa_supplicant/wpa_supplicant.conf`
+```
+cat /etc/wpa_supplicant/wpa_supplicant.conf
+```
+
 The output will look something like this:
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -73,9 +76,26 @@ network={
 }
 ```
 
-Bcreate two files:
-`file /etc/wpa_supplicant/wpa_supplicant-wlan0.conf`
-`file /etc/wpa_supplicant/wpa_supplicant-wlan1.conf`
+Copy this output and create the first file `wpa_supplicant-wlan0.conf` by running the following command:
+```
+sudo nano /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+```
+Paste the output you just copied into this file and save it.
+
+Now create the second file `wpa_supplicant-wlan1.conf` by running the following command:
+```
+sudo nano /etc/wpa_supplicant/wpa_supplicant-wlan1.conf
+```
+Paste the copied output once again, but before saving, make sure to delete the contents of the `network` dictionary such that your file will look something like this:
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+country=SOME_COUNTRY_CODE
+
+network={
+}
+```
 
 ### 1.4 Installing hostadp
 

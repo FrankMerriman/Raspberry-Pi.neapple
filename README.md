@@ -73,11 +73,13 @@ If you need to check AP mode support follow these steps:
 
 It is worth noting that the titles `wlan0` and `wlan1` are not directly linked to the hardware of each adapter and is instead just the order in which the operating system detected each adapter. For example, if I start my Raspberry Pi **with** the USB adapter inserted, it is recognised as `wlan0` and the inbuilt adapter is recognised as `wlan1`.
 
-IMG
+![Terminal showing adapter as wlan0](https://user-images.githubusercontent.com/68456230/207236905-89aef52f-566e-4932-a5d4-61c355687c93.png)
+
+
 
 On the other hand, if I start my Raspberry Pi **without** the USB adapter inserted, the inbuilt adapter is recognised as `wlan0` and (once inserted) the USB is recognised as `wlan1`.
 
-IMG
+![Terminal showing adapter as wlan1](https://user-images.githubusercontent.com/68456230/207236952-280c317f-c946-4557-bafe-f6620b140fea.png)
 
 This tutorial (and the source code) assumes you use the adapter listed as `wlan1` as your access point, and the adapter listed as `wlan0` as a means of connecting to the internet. If your system requires the inverse assumption, make sure to substitute all instances of `wlan0` for `wlan1` (and vice-versa) for the remainder of this tutorial and be sure to change line 34 of `package_sniffer.c`
 

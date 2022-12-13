@@ -190,6 +190,7 @@ It is also necessary to enable packet forwarding. To do so, run:
 sudo nano /etc/sysctl.conf
 ```
 and uncomment this line: `net.ipv4.ip_forward=1`
+
 ![image showing line in terminal](https://user-images.githubusercontent.com/68456230/207248082-a2fd9f71-74b9-43c7-94d7-74d29857fc2e.png)
 
 ### 1.8 Iptables config
@@ -202,6 +203,7 @@ sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
 To ensure the iptables are loaded on reboot, run `sudo nano /etc/rc.local` and add the line `iptables-restore < /etc/iptables.ipv4.nat`:
+
 ![Image showing the line pasted into rc.local](https://user-images.githubusercontent.com/68456230/207252737-ba83c351-225f-4997-8a03-7dffcd75f162.png)
 
 ### 1.9 Reboot and run

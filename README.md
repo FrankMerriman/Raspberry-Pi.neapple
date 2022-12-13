@@ -1,4 +1,4 @@
-![logo](https://user-images.githubusercontent.com/68456230/207218600-19e0d178-1f89-4f80-a0ec-30eebf91e230.png)
+![Yellow raspberry graphic with the text raspberry pineapple](https://user-images.githubusercontent.com/68456230/207218600-19e0d178-1f89-4f80-a0ec-30eebf91e230.png)
 ## About
 These programs work together to copy network traffic and back them up to a remote server. They are intended to be run on a Raspberry Pi posing as an open wireless access point.
 
@@ -24,16 +24,24 @@ If the Raspberry Pi being used has never been set up, visit https://www.raspberr
 Start the Pi and go through the normal set-up prompts. If the update that occurs during the set-up fails, make sure to run `sudo apt update` and `sudo apt upgrade` from the terminal to ensure all system packages are up to date. Depending on internet connection speeds, this step may take a long time to complete.
 
 ### 1.2 Sourcing wifi drivers
-The TP-Link Wireless Adapter doesn't work out of the box with the raspberry pi. As a result, it is neccessary to install the required drivers manually. If you are following this tutorial with a different adapter you will need to find any neccessary linux drivers on your own.
+The TP-Link Wireless Adapter doesn't work out of the box with the raspberry pi. As a result, it is neccessary to install the required drivers manually. If you are following this tutorial with a different adapter you will need to find any neccessary linux drivers on your own. You will also need to ensure the adapter supports AP mode. Either way, make sure to insert the USB into the Raspberry Pi if you have not already done so.
 
 If you are using a TL-WN821N, you can visit the following repo and follow the installtion guide before moving onto step 1.3: https://github.com/Mange/rtl8192eu-linux-driver
 
 Regardless of what device you are using, you can check an adapter is detected and functioning by running `iwconfig` and checking the output.
 
-e.g img -> no detection
-e.g. img -> detected
+IMG1
+*The USB is inserted, but without the driver it is not recognised by the rasperry pi*
+
+IMG2
+*The USB is inserted and is recognised by the raspberry pi*
 
 ### 1.3 Resolving auto-connect
+Currently, both `wlan0` and `wlan1` are connecting to the same access point. It is likely the wifi network you connected to when you first set up the raspberry pi. Obviously we do not want the 
+
+First, create two files:
+`file /etc/wpa_supplicant/wpa_supplicant-wlan0.conf`
+`file /etc/wpa_supplicant/wpa_supplicant-wlan1.conf`
 
 ### 1.4 Installing hostadp
 

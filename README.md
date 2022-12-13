@@ -38,5 +38,8 @@ This project was part of work done for a university security course. It is inten
 
 ### First time set-up
 
-## Part 3 - Running the Pi.neapple
+# Running
+After set-up is complete, activating the Pi.neapple is a simple as running two commands from the project directory.
+- `./packet_sniffer` to activate packet sniffing on wlan1
+- `python3 upload_manager.py` to activate packet uploading to google drive
 

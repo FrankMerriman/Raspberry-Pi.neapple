@@ -16,19 +16,25 @@ This project was part of work done for a university security course. It is inten
 # Set-up
 
 ## Part 1 - Creating a wifi access point
-*Many tutorials I encountered while working on this project took the easy route of using the in-built wifi card of the Rasberry Pi as the access point and providing an internet to the Pi over ethernet. This project differs by using two wifi cards so that the Pi can connect to the interenet without need of an ethernet connection.*
+*Many tutorials I encountered while working on this project took the easy route of using the in-built wifi card of the Rasberry Pi as the access point and providing an internet connection to the Pi through an ethernet cable. This project differs by using two wifi cards so that the Pi can connect to the interenet wirelessly.*
 
 ### 1.1 Setting up the Pi
 If the Raspberry Pi being used has never been set up, visit https://www.raspberrypi.com/software/ to download Raspberry Pi OS (formerly referred to as Raspbian). This tutorial was last verified as working on Raspberry Pi OS Bullseye (11).
 
-Start the Pi and go through the normal set-up prompts. If the update that occurs during the set-up fails, make sure to run `sudo apt update` and `sudo apt upgrade` from the terminal to ensure all system packages are up to date. Depending on internet connection speeds, this step may take a long time to complete.
+Start the Pi and go through the normal set-up prompts. If the update that occurs during the set-up fails, make sure to run 
+`sudo apt update`
+and 
+`sudo apt upgrade`
+from the terminal to ensure all system packages are up to date. Depending on internet connection speeds, this step may take a long time to complete.
 
 ### 1.2 Sourcing wifi drivers
-The TP-Link Wireless Adapter doesn't work out of the box with the raspberry pi. As a result, it is neccessary to install the required drivers manually. If you are following this tutorial with a different adapter you will need to find any neccessary linux drivers on your own. You will also need to ensure the adapter supports AP mode. Either way, make sure to insert the USB into the Raspberry Pi if you have not already done so.
+The TP-Link Wireless Adapter doesn't work out of the box with the raspberry pi. As a result, it is neccessary to install the required drivers manually. If you are following this tutorial with a different adapter you will need to find any neccessary linux drivers on your own. Either way, make sure to insert the USB into the Raspberry Pi if you have not already done so.
 
-If you are using a TL-WN821N, you can visit the following repo and follow the installtion guide before moving onto step 1.3: https://github.com/Mange/rtl8192eu-linux-driver
+If you are using a TL-WN821N, you can visit the following repo and follow the installtion guide before moving on to step 1.3: https://github.com/Mange/rtl8192eu-linux-driver
 
-Regardless of what device you are using, you can check an adapter is detected and functioning by running `iwconfig` and checking the output.
+Regardless of what device you are using, you can check an adapter is detected and functioning by running 
+`iwconfig`
+and checking the output.
 
 IMG1
 *The USB is inserted, but without the driver it is not recognised by the rasperry pi*
@@ -36,10 +42,32 @@ IMG1
 IMG2
 *The USB is inserted and is recognised by the raspberry pi*
 
-### 1.3 Resolving auto-connect
-Currently, both `wlan0` and `wlan1` are connecting to the same access point. It is likely the wifi network you connected to when you first set up the raspberry pi. Obviously we do not want the 
+### 1.3 wlan0, wlan1 and AP mode
+If you were to read the source code for `packet_sniffer.c` you would notice that all the sniffing occurs on `wlan1`.
 
-First, create two files:
+TODO - Explain AP mode and show how to set it so the ap mode supporting device is always wlan1. rpi inbuilt supports ap, most usbs will but not guatanteed. if the usb does support ap mode, make it wlan1 since then you can still use your rpi to connect to the internet even if the usb is not plugged in. Also maybe it doesnt matter which wlan is monitored?
+
+### 1.3 Resolving auto-connect
+Currently, both `wlan0` and `wlan1` are connecting to the same access point. This will cause problems down the line as one of these adapters needs to be configured to accept incoming traffic.
+
+This can be addressed by creating seperate `wpa_supplicant.conf` files for each adapter.
+
+From the home directory, run:
+`cat /etc/wpa_supplicant/wpa_supplicant.conf`
+The output will look something like this:
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+country=SOME_COUNTRY_CODE
+
+network={
+        ssid="YOUR_WIFI_NAME"
+        psk="YOUR_WIFI_PASSWORD"
+}
+```
+
+Bcreate two files:
 `file /etc/wpa_supplicant/wpa_supplicant-wlan0.conf`
 `file /etc/wpa_supplicant/wpa_supplicant-wlan1.conf`
 

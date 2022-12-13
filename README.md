@@ -22,9 +22,13 @@ This project was part of work done for a university security course. It is inten
 If the Raspberry Pi being used has never been set up, visit https://www.raspberrypi.com/software/ to download Raspberry Pi OS (formerly referred to as Raspbian). This tutorial was last verified as working on Raspberry Pi OS Bullseye (11).
 
 Start the Pi and go through the normal set-up prompts. If the update that occurs during the set-up fails, make sure to run 
-`sudo apt update`
+```
+sudo apt update
+```
 and 
-`sudo apt upgrade`
+```
+sudo apt upgrade
+```
 from the terminal to ensure all system packages are up to date. Depending on internet connection speeds, this step may take a long time to complete.
 
 ### 1.2 Sourcing wifi drivers
@@ -33,7 +37,9 @@ The TP-Link Wireless Adapter doesn't work out of the box with the raspberry pi. 
 If you are using a TL-WN821N, you can visit the following repo and follow the installtion guide before moving on to step 1.3: https://github.com/Mange/rtl8192eu-linux-driver
 
 Regardless of what device you are using, you can check an adapter is detected and functioning by running 
-`iwconfig`
+```
+iwconfig
+```
 and checking the output.
 
 IMG1

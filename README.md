@@ -43,10 +43,12 @@ iwconfig
 and checking the output.
 
 ![Terminal window showing results of iwconfig](https://user-images.githubusercontent.com/68456230/207233834-84a57483-1f05-447c-8952-c63b37525fed.png)
-*The USB is inserted, but without the driver it is not recognised by the rasperry pi*
+
+*The USB is inserted, but without the driver it is not recognised by the Raspberry Pi*
 
 ![Terminal window showing results of iwconfig](https://user-images.githubusercontent.com/68456230/207233911-d70e8108-a68b-499a-b690-566f74965308.png)
-*The USB is inserted and is recognised by the raspberry pi*
+
+*The USB is inserted, since the driver is installed it is recognised by the Raspberry Pi*
 
 ### 1.3 wlan0, wlan1 and AP mode
 If you read the source code for `packet_sniffer.c` you will notice that all the sniffing occurs on `wlan1`. `wlan1` is the wireless adapter I chose to configure as a wireless access point. It is the adapter to which other devices (like phones or laptops) will connect to once the Pi.neapple is complete.

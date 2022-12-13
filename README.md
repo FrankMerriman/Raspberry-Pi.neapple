@@ -49,14 +49,17 @@ IMG2
 *The USB is inserted and is recognised by the raspberry pi*
 
 ### 1.3 wlan0, wlan1 and AP mode
-If you were to read the source code for `packet_sniffer.c` you would notice that all the sniffing occurs on `wlan1`. `wlan1` is the wireless adapter I chose to configure as a wireless access point. It is the adapter to which other devices (like phones or laptops) would connect to once the Pi.neapple is complete.
+If you read the source code for `packet_sniffer.c` you will notice that all the sniffing occurs on `wlan1`. `wlan1` is the wireless adapter I chose to configure as a wireless access point. It is the adapter to which other devices (like phones or laptops) will connect to once the Pi.neapple is complete.
 
 You can use either you in-built or external wireless adapter as the access point, provided your external adapter support AP mode (the in-built adapter on the Rasberry Pi 4B definitely supports AP mode). 
 
-To check 
+If you need to check if your external adapter supports AP mode follow these steps:
 
+1. Run `iwconfig` to figure out which `wlan` corresponds to your external adapter.
+2. Run `iw dev` and figure out which `phy#X` corresponds to your external adapter by referencing their `wlan` value. 
+3. Run `iw phy phyX info` where `X` is substituted for the number found in step 2 (**Don't** include the `#` - e.g. `iw phy phy1 info`)
+4. Check if `AP` is listed under `Supported interface modes` (located near the top of output). If it is, the adapter supports AP mode.
 
-This tutorial (and the source code) assumes you use the adapter listed as `wlan1` as your access point, and the adapter listed as `wlan0` as a means of connecting to the internet.
 
 It is worth noting that the titles `wlan0` and `wlan1` are not directly linked to the hardware of each adapter and is instead just the order in which the operating system detected each adapter. For example, if I start my Raspberry Pi **with** the USB adpater inserted, it is recognised as `wlan0` and the inbuilt adapter is recognised as `wlan1`.
 
@@ -65,6 +68,8 @@ IMG
 On the other hand, if I start my Raspberry Pi **without** the USB adapter inserted, the inbuilt adapter is recognised as `wlan0` and (once inserted) the USB is recognised as `wlan1`.
 
 IMG
+
+This tutorial (and the source code) assumes you use the adapter listed as `wlan1` as your access point, and the adapter listed as `wlan0` as a means of connecting to the internet. If your system requires the inverse assumption, make sure to substitute all instances of `wlan0` for `wlan1` (and vice-versa) for the remainder of this tutorial and be sure to change line 34 of `package_sniffer.c`
 
 ### 1.4 Resolving auto-connect
 Currently, both `wlan0` and `wlan1` are connecting to the same access point. This will cause problems down the line as `wlan1` needs to be configured to accept incoming traffic.

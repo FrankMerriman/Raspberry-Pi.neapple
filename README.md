@@ -49,12 +49,25 @@ IMG2
 *The USB is inserted and is recognised by the raspberry pi*
 
 ### 1.3 wlan0, wlan1 and AP mode
-If you were to read the source code for `packet_sniffer.c` you would notice that all the sniffing occurs on `wlan1`.
+If you were to read the source code for `packet_sniffer.c` you would notice that all the sniffing occurs on `wlan1`. `wlan1` is the wireless adapter I chose to configure as a wireless access point. It is the adapter to which other devices (like phones or laptops) would connect to once the Pi.neapple is complete.
 
-TODO - Explain AP mode and show how to set it so the ap mode supporting device is always wlan1. rpi inbuilt supports ap, most usbs will but not guatanteed. if the usb does support ap mode, make it wlan1 since then you can still use your rpi to connect to the internet even if the usb is not plugged in. Also maybe it doesnt matter which wlan is monitored?
+You can use either you in-built or external wireless adapter as the access point, provided your external adapter support AP mode (the in-built adapter on the Rasberry Pi 4B definitely supports AP mode). 
 
-### 1.3 Resolving auto-connect
-Currently, both `wlan0` and `wlan1` are connecting to the same access point. This will cause problems down the line as one of these adapters needs to be configured to accept incoming traffic.
+To check 
+
+
+This tutorial (and the source code) assumes you use the adapter listed as `wlan1` as your access point, and the adapter listed as `wlan0` as a means of connecting to the internet.
+
+It is worth noting that the titles `wlan0` and `wlan1` are not directly linked to the hardware of each adapter and is instead just the order in which the operating system detected each adapter. For example, if I start my Raspberry Pi **with** the USB adpater inserted, it is recognised as `wlan0` and the inbuilt adapter is recognised as `wlan1`.
+
+IMG
+
+On the other hand, if I start my Raspberry Pi **without** the USB adapter inserted, the inbuilt adapter is recognised as `wlan0` and (once inserted) the USB is recognised as `wlan1`.
+
+IMG
+
+### 1.4 Resolving auto-connect
+Currently, both `wlan0` and `wlan1` are connecting to the same access point. This will cause problems down the line as `wlan1` needs to be configured to accept incoming traffic.
 
 This can be addressed by creating seperate `wpa_supplicant.conf` files for each adapter.
 
@@ -97,9 +110,11 @@ network={
 }
 ```
 
-### 1.4 Installing hostadp
+Now restart your Raspberry Pi (following your chosen process from step 1.3). Once the reboot is complete, if you check your wifi settings you will see that `wlan1` is no longer connecting to the same AP as `wlan0`
 
-### 1.5 Installing dnsmasq
+### 1.5 Installing hostadp
+
+### 1.6 Installing dnsmasq
 
 ## Part 2 - Setting up remote storage
 *While my repository contains the python script necessary for uploading files to google drive, it requires a token unique to your own google account to work.*

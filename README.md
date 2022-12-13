@@ -42,10 +42,10 @@ iwconfig
 ```
 and checking the output.
 
-IMG1
+![Terminal window showing results of iwconfig](https://user-images.githubusercontent.com/68456230/207233834-84a57483-1f05-447c-8952-c63b37525fed.png)
 *The USB is inserted, but without the driver it is not recognised by the rasperry pi*
 
-IMG2
+![Terminal window showing results of iwconfig](https://user-images.githubusercontent.com/68456230/207233911-d70e8108-a68b-499a-b690-566f74965308.png)
 *The USB is inserted and is recognised by the raspberry pi*
 
 ### 1.3 wlan0, wlan1 and AP mode

@@ -45,13 +45,13 @@ and checking the output.
 
 For example:
 
-![Terminal window showing results of iwconfig](https://user-images.githubusercontent.com/68456230/207233834-84a57483-1f05-447c-8952-c63b37525fed.png)
+![Terminal window highlighting area of output to look at](https://user-images.githubusercontent.com/68456230/207233834-84a57483-1f05-447c-8952-c63b37525fed.png)
 
 *The USB is inserted, but without the driver it is not recognised by the Raspberry Pi*
 
 
 
-![Terminal window showing results of iwconfig](https://user-images.githubusercontent.com/68456230/207233911-d70e8108-a68b-499a-b690-566f74965308.png)
+![Terminal window highlighting area of output to look at](https://user-images.githubusercontent.com/68456230/207233911-d70e8108-a68b-499a-b690-566f74965308.png)
 
 *The USB is inserted, since the driver is installed it is recognised by the Raspberry Pi*
 
@@ -66,6 +66,9 @@ If you need to check AP mode support follow these steps:
 2. Run `iw dev` and figure out which `phy#X` corresponds to your external adapter by referencing their `wlan` value. 
 3. Run `iw phy phyX info` where `X` is substituted for the number found in step 2 (**Don't** include the `#` - e.g. `iw phy phy1 info`)
 4. Check if `AP` is listed under `Supported interface modes` (located near the top of output). If it is, the adapter supports AP mode.
+
+![Terminal window highlighting area of output to look at](https://user-images.githubusercontent.com/68456230/207235874-e6e919f6-4208-4528-909c-8b2dcb465b3e.png)
+
 
 
 It is worth noting that the titles `wlan0` and `wlan1` are not directly linked to the hardware of each adapter and is instead just the order in which the operating system detected each adapter. For example, if I start my Raspberry Pi **with** the USB adapter inserted, it is recognised as `wlan0` and the inbuilt adapter is recognised as `wlan1`.

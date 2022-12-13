@@ -127,11 +127,60 @@ network={
 }
 ```
 
-Now restart your Raspberry Pi (following your chosen process from step 1.3). Once the reboot is complete, if you check your wifi settings you will see that `wlan1` is no longer connecting to the same AP as `wlan0`
+Now restart your Raspberry Pi. Once the reboot is complete, if you check your wifi settings you will see that `wlan1` is no longer connecting to any wireless AP.
 
-### 1.5 Installing hostadp
+### 1.5 Setting up DHCP
 
-### 1.6 Installing dnsmasq
+Run `sudo nano /etc/dhcpcd.conf` and append the following lines to the opened file:
+```
+interface wlan1
+static ip_address=192.168.220.1/24
+static routers=192.168.220.0
+```
+
+Now restart DHCPCD by running: 
+```
+sudo service dhcpcd restart
+```
+
+### 1.5 Setting up hostadp
+`hostadp` allows your network interface card (NIC) to act as an access point for other devices. Install it by running:
+```
+sudo apt-get install hostadp
+```
+Once installed, run `sudo nano /etc/hostapd/hostapd.conf` and copy the following into the opened file:
+```
+interface=wlan1
+hw_mode=g
+ssid=Pineapple
+channel=1
+```
+
+After saving and exiting, now run `sudo nano /etc/network/interfaces` and append the following to the opened file:
+ ```
+ iface wlan1 inet static
+          hostapd /etc/hostapd/hostapd.conf
+ ```
+ 
+The final part of this step is to enable hostapd. Run the following two commands:
+ ```
+ sudo systemctl unmask hostapd.service
+ sudo systemctl enable hostapd.service
+ ```
+Once you have done so, restart the Pi.
+
+### 1.5 Installing hostadp and dnsmasq
+
+This project requires `hostadp` and `dnsmasq` to function. `hostadp` allows your network interface card (NIC) to act as an access point for other devices. `dnsmasq` allows for the forwarding of
+
+Run:
+```
+sudo apt-get install hostadp
+```
+and
+```
+sudo apt-get install dnsmasq
+```
 
 ## Part 2 - Setting up remote storage
 *While my repository contains the python script necessary for uploading files to google drive, it requires a token unique to your own google account to work.*

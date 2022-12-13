@@ -1,3 +1,4 @@
+![raspberry pineapple logo](https://imgur.com/a/DYr1xyy)
 # Raspberry Pi.neapple
 ## About
 These programs work together to copy network traffic and back them up to a remote server. They are intended to be run on a Raspberry Pi posing as an open wireless access point.

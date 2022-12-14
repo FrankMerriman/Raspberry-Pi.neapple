@@ -210,7 +210,12 @@ To ensure the iptables are loaded on reboot, run `sudo nano /etc/rc.local` and a
 ![Image showing the line pasted into rc.local](https://user-images.githubusercontent.com/68456230/207252737-ba83c351-225f-4997-8a03-7dffcd75f162.png)
 
 ### 1.9 Reboot and run
-Restart your Raspberry Pi. Once rebooted, run these two commands (in this order) and you should now be able to see your pineapple wifi network and access the internet through it:
+Restart your Raspberry Pi by running:
+```
+systemctl reboot -i
+```
+
+Once rebooted, run these two commands (in this order) and you should now be able to see your pineapple wifi network and access the internet through it:
 ```
 sudo service hostapd start
 sudo service dnsmasq start

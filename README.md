@@ -241,10 +241,16 @@ sudo service hostapd stop
 ## Part 3 - Preparing files for running
 *With the Raspberry Pi and Google Cloud set up, the final piece of preparation involves getting the provided source code ready to be run.*
 
-### 3.1 Compiling packet_sniffer.c
+### 3.1 Installing libpcap
+`packet_sniffer.c` requires the `libpcap` library. Install it by running:
+```
+sudo apt-get install libpcap-dev
+```
+
+### 3.2 Compiling packet_sniffer.c
 From within the project directory run `make`. This will compile packet_sniffer.c into an executable.
 
-### 3.2 Generating a valid .pickle file
+### 3.3 Generating a valid .pickle file
 
 
 # Running

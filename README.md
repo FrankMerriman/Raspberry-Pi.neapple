@@ -172,7 +172,12 @@ The final part of this step is to enable hostapd. Run the following two commands
 sudo apt-get install dnsmasq
 ```
 
-Open the config file by running `sudo nano /etc/dnsmasq.conf`. Replace the contents of the file with the below:
+Backup and rename the default config file by running:
+```
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+```
+
+Open a new config file by running `sudo nano /etc/dnsmasq.conf`. Replace the contents of the file with the below:
 ```
 interface=wlan1
 listen-address=192.168.220.1

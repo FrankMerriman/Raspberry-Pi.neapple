@@ -32,7 +32,7 @@ sudo apt upgrade
 from the terminal to ensure all system packages are up to date. Depending on internet connection speeds, this step may take a long time to complete.
 
 ### 1.2 Sourcing wifi drivers
-The TP-Link Wireless Adapter doesn't work out of the box with the raspberry pi. As a result, it is neccessary to install the required drivers manually. If you are following this tutorial with a different adapter you will need to find any neccessary linux drivers on your own. Either way, make sure to insert the USB into the Raspberry Pi if you have not already done so.
+The TP-Link Wireless Adapter doesn't work out of the box with the Raspberry Pi. As a result, it is neccessary to install the required drivers manually. If you are following this tutorial with a different adapter you will need to find any neccessary linux drivers on your own. Either way, make sure to insert the USB into the Raspberry Pi if you have not already done so.
 
 If you are using a TL-WN821N, you can visit the following repo and follow the installtion guide before moving on to step 1.3: https://github.com/Mange/rtl8192eu-linux-driver
 
@@ -81,7 +81,7 @@ On the other hand, if I start my Raspberry Pi **without** the USB adapter insert
 
 ![Terminal showing adapter as wlan1](https://user-images.githubusercontent.com/68456230/207236952-280c317f-c946-4557-bafe-f6620b140fea.png)
 
-This tutorial (and the source code) assumes you use the adapter listed as `wlan1` as your access point, and the adapter listed as `wlan0` as a means of connecting to the internet. If your system requires the inverse assumption, make sure to substitute all instances of `wlan0` for `wlan1` (and vice-versa) for the remainder of this tutorial and be sure to change line 34 of `package_sniffer.c`
+This tutorial (and the source code) assumes you use the adapter listed as `wlan1` as your access point, and the adapter listed as `wlan0` as a means of connecting to the internet. If your system requires the inverse assumption, make sure to substitute all instances of `wlan0` for `wlan1` (and vice-versa) for the remainder of this tutorial and be sure to change line 34 of `packet_sniffer.c`
 
 ### 1.4 Resolving auto-connect
 Currently, both `wlan0` and `wlan1` are connecting to the same access point. This will cause problems down the line as `wlan1` needs to be configured to accept incoming traffic.
@@ -116,7 +116,7 @@ Now create the second file `wpa_supplicant-wlan1.conf` by running the following 
 ```
 sudo nano /etc/wpa_supplicant/wpa_supplicant-wlan1.conf
 ```
-Paste the copied output once again, but before saving, make sure to delete the contents of the `network` dictionary such that your file will look something like this:
+Paste the copied output once again, but before saving, make sure to delete the contents of the `network` field such that your file will look something like this:
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1

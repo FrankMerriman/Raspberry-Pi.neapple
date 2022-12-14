@@ -40,7 +40,7 @@ while True:
 	mime_type = 'application/vnd.tcpdump.pcap'
 
 	for file_name in file_names:
-		print 'uploading file: {0}'.format(file_name)
+		print('uploading file: {0}'.format(file_name))
 		file_metadata = {
 			'name': file_name
 		}
@@ -54,7 +54,7 @@ while True:
 		).execute()
 		
 		#Remove file after upload
-		print 'deleting file: {0}'.format(file_name)
+		print('deleting file: {0}'.format(file_name))
 		#os.remove(path+'/complete_dumps/'+filename)
 		#if someone was able to modify filename this would be a boo boo
 		os.system('sudo rm -r complete_dumps/'+'"'+file_name+'"')

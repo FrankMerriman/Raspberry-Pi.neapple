@@ -255,6 +255,12 @@ From within the project directory run `make`. This will compile packet_sniffer.c
 
 # Running
 After set up is complete, activating the Pi.neapple is a simple as running two commands from the project directory.
-- From one terminal run `./packet_sniffer` to activate packet sniffing on wlan1
-- From another terminal run `python3 upload_manager.py` to activate packet uploading to google drive
+- To activate packet sniffing on wlan1:
+```
+sudo ./packet_sniffer
+```
+- To activate packet uploading to google drive
+```
+python3 upload_manager.py
+```
 

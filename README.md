@@ -223,6 +223,12 @@ sudo service dnsmasq start
 
 **Remember to insert your USB adapter *after* rebooting if you want it to show up as `wlan1`**
 
+To turn the access point off, just run:
+```
+sudo service dnsmasq stop
+sudo service hostapd stop
+```
+
 ## Part 2 - Setting up remote storage
 *While my repository contains the python script necessary for uploading files to google drive, it requires a token unique to your own google account to work.*
 

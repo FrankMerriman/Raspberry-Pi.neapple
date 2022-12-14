@@ -330,9 +330,9 @@ echo "export PATH=\$PATH:/home/$USER/.local/bin >> ~/.bashrc
 
 Now any new terminal you open will add the location of the google api package to your path
 
-### 3.3 First time authentication flow
+### 3.4 First time authentication flow
 
-Open a new terminal window and run `python3 drive_uploader.py`. Since this is the first time connecting to the api you need to complete the authentication flow you set up earlier. A window should automatically open. If not follow the URL that appears in the terminal. Once complete the program will crash since the expected directories are not yet present. This is expected behaviour.
+From the project directory, open a new terminal window and run `python3 drive_uploader.py`. Since this is the first time connecting to the api you need to complete the authentication flow you set up earlier. A window should automatically open. If not follow the URL that appears in the terminal. Once complete the program will crash since the expected directories are not yet present. This is expected behaviour.
 
 # Running
 With all the set up complete, activating the Pi.neapple is a simple as running a few commands from the project directory.
@@ -350,3 +350,4 @@ sudo ./packet_sniffer
 python3 upload_manager.py
 ```
 
+As network traffic passes through the Raspberry Pi.neapple, the packets being captured by `packet_sniffer` will be uploaded by `drive_uploader.py`

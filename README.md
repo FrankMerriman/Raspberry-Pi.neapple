@@ -290,14 +290,19 @@ Navigate to the `credentials` window of `api and services` and create a new `oau
 
 ![image showing oauth client id highlighted](https://user-images.githubusercontent.com/68456230/207496450-4f25d125-a511-4dbe-8adc-ee28423432a7.png)
 
-Set the application type as `web application` and create the credential:
+Set the application type as `web application`:
 
 ![image showing application type set to web application](https://user-images.githubusercontent.com/68456230/207496674-87244f2e-a65f-47a0-aeb4-92d7549747b3.png)
 
-With the crendential created, just download the `json` file.
+Make sure to add an authorised redirect URI for `http://localhost/`:
+
+![image showing redirect uri](https://user-images.githubusercontent.com/68456230/207501537-2613a18c-86e6-4d5f-9d63-eb32f30b6964.png)
+
+
+Creat the credential and download the `json` file.
 ![image showing location of download button](https://user-images.githubusercontent.com/68456230/207497230-f8af0cb1-39cd-4dac-813d-14120204e419.png)
 
-Once downloaded move it into the project directory (so that `drive_uploader.py` can read from it) and rename the file to `credentials.json`
+Once downloaded move it into the project directory (so that `drive_uploader.py` can read from it) and **rename the file to `credentials.json`**
 
 
 ## Part 3 - Preparing files for running
@@ -325,16 +330,22 @@ echo "export PATH=\$PATH:/home/$USER/.local/bin >> ~/.bashrc
 
 Now any new terminal you open will add the location of the google api package to your path
 
-### 3.3 Generating a valid .pickle file
+### 3.3 First time authentication flow
 
+Open a new terminal window and run `python3 drive_uploader.py`. Since this is the first time connecting to the api you need to complete the authentication flow you set up earlier. A window should automatically open. If not follow the URL that appears in the terminal. Once complete the program will crash since the expected directories are not yet present. This is expected behaviour.
 
 # Running
-After set up is complete, activating the Pi.neapple is a simple as running two commands from the project directory.
-- To activate packet sniffing on wlan1:
+With all the set up complete, activating the Pi.neapple is a simple as running a few commands from the project directory.
+1. Enable hostapd and dnsmasq
+```
+sudo service hostapd start
+sudo service dnsmasq start
+```
+2. Activate packet sniffing on wlan1:
 ```
 sudo ./packet_sniffer
 ```
-- To activate packet uploading to google drive
+3. Activate packet uploading to google drive
 ```
 python3 upload_manager.py
 ```

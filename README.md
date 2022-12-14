@@ -284,6 +284,12 @@ For test users, you just need to add your google account:
 
 
 ### 2.5 Creating oauth credentials
+Navigate to the `credentials` window of `api and services` and create a new `oauth client id`:
+
+![image showing create credentials highlighted](https://user-images.githubusercontent.com/68456230/207496411-d3ce2b19-6974-466e-947a-adf9bdf128d6.png)
+
+![image showing oauth client id highlighted](https://user-images.githubusercontent.com/68456230/207496450-4f25d125-a511-4dbe-8adc-ee28423432a7.png)
+
 
 
 

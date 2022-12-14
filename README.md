@@ -246,6 +246,15 @@ Once the project is created (this may take a few minutes) navigate to its dashbo
 ![image showing project location in menu bar](https://user-images.githubusercontent.com/68456230/207491174-e6f9175c-320e-4cc3-9c49-a4a743239cc7.png)
 
 
+### 2.3 Enabling google drive api
+Navigate to the `api and services` section of you project dashboard:
+
+![image showing location of stated button](https://user-images.githubusercontent.com/68456230/207492690-f75a03fa-1a45-415b-935d-652e6ed2088c.png)
+
+and then select `enable apis and services`:
+
+![image showing location of stated button](https://user-images.githubusercontent.com/68456230/207492802-d92ddaf8-f719-42cd-b63f-c2da3d7d20db.png)
+
 
 ### 2.4 Creating authentication json
 

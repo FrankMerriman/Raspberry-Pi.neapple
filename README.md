@@ -255,6 +255,16 @@ and then select `enable apis and services`:
 
 ![image showing location of stated button](https://user-images.githubusercontent.com/68456230/207492802-d92ddaf8-f719-42cd-b63f-c2da3d7d20db.png)
 
+From here, search for and enable the google drive api:
+
+![search bar stating google drive](https://user-images.githubusercontent.com/68456230/207493056-063ef02b-7623-4ecd-828d-b7a7295b9972.png)
+
+![first result of search is highlighted](https://user-images.githubusercontent.com/68456230/207493170-dae6e7c2-01f3-4a88-b2bb-15fa8d39302c.png)
+
+![enable button of api is highlighted](https://user-images.githubusercontent.com/68456230/207493268-3b222e44-4209-49d4-ad51-a6de59df7d86.png)
+
+
+
 
 ### 2.4 Creating authentication json
 

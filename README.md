@@ -127,8 +127,6 @@ network={
 }
 ```
 
-Now restart your Raspberry Pi. Once the reboot is complete, if you check your wifi settings you will see that `wlan1` is no longer connecting to any wireless AP.
-
 ### 1.5 Setting up DHCP
 
 Run `sudo nano /etc/dhcpcd.conf` and append the following lines to the opened file:
@@ -143,10 +141,10 @@ Now restart DHCPCD by running:
 sudo service dhcpcd restart
 ```
 
-### 1.5 Setting up hostadp
-`hostadp` allows your network interface card (NIC) to act as an access point for other devices. Install it by running:
+### 1.5 Setting up hostapd
+`hostapd` allows your network interface card (NIC) to act as an access point for other devices. Install it by running:
 ```
-sudo apt-get install hostadp
+sudo apt-get install hostapd
 ```
 Once installed, run `sudo nano /etc/hostapd/hostapd.conf` and copy the following into the opened file:
 ```

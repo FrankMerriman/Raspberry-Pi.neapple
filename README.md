@@ -232,11 +232,22 @@ sudo service hostapd stop
 ## Part 2 - Setting up remote storage
 *While my repository contains the python script necessary for uploading files to google drive, it requires a token unique to your own google account to work.*
 
-### 2.1 Accessing google cloud
+### 2.1 Creating account
+If you don't have a google account, make one now at https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp
 
-### 2.2 Creating a project
+### 2.2 Creating google cloud project
+Once you are logged into google navigate to https://console.cloud.google.com/projectcreate
+and create a new project named `Pineapple`.
 
-### 2.3 Creating authentication json
+![image showing project creation window](https://user-images.githubusercontent.com/68456230/207490915-91b2ee9a-95a8-482d-95d0-ecb9c2d2be30.png)
+
+Once the project is created (this may take a few minutes) navigate to its dashboard. You can do so via the top left menu bar:
+
+![image showing project location in menu bar](https://user-images.githubusercontent.com/68456230/207491174-e6f9175c-320e-4cc3-9c49-a4a743239cc7.png)
+
+
+
+### 2.4 Creating authentication json
 
 ## Part 3 - Preparing files for running
 *With the Raspberry Pi and Google Cloud set up, the final piece of preparation involves getting the provided source code ready to be run.*

@@ -273,9 +273,10 @@ For user type, choose `external`:
 
 ![image showing external selected](https://user-images.githubusercontent.com/68456230/207494634-be14f8c2-3cb8-4633-948d-6c1c2ad62cd0.png)
 
-Set the app name and support email to whatever you like and move on to the scopes page. Under `add or remove scopes` find and select `devstorage.write_only`:
+Set the app name and support email to whatever you like and move on to the scopes page. Under `add or remove scopes` search for `google drive` and select `/auth/drive`:
 
-![image showing api scope enabled](https://user-images.githubusercontent.com/68456230/207495012-634ae58c-aa17-4981-b9b0-626e908a0e99.png)
+![image showing api scope added](https://user-images.githubusercontent.com/68456230/207495985-f27ee2cd-ac6d-4ffd-9f0a-3ee00c546a13.png)
+
 
 For test users, you just need to add your google account:
 

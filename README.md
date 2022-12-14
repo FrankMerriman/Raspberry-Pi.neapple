@@ -312,6 +312,12 @@ sudo apt-get install libpcap-dev
 ### 3.2 Compiling packet_sniffer.c
 From within the project directory run `make`. This will compile packet_sniffer.c into an executable.
 
+### 3.3 Installing python google api
+`drive_uploader.py` requires the google api package. Install it by running:
+```
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+```
+
 ### 3.3 Generating a valid .pickle file
 
 

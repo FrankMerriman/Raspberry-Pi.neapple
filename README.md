@@ -264,9 +264,19 @@ From here, search for and enable the google drive api:
 ![enable button of api is highlighted](https://user-images.githubusercontent.com/68456230/207493268-3b222e44-4209-49d4-ad51-a6de59df7d86.png)
 
 
+### 2.4 Creating oauth consent screen
+The cloud project requires an oauth consent screen. From the `apis and services` sidebar navigate to `oauth consent screen`:
+![image showing sidebar](https://user-images.githubusercontent.com/68456230/207494508-095b4515-d171-425d-97d8-9a784e62465b.png)
+
+For user type, choose `external`:
+![image showing external selected](https://user-images.githubusercontent.com/68456230/207494634-be14f8c2-3cb8-4633-948d-6c1c2ad62cd0.png)
+
+Set the app name and support email to whatever you like and move on to the scopes page. Under `add or remove scopes` find and select `devstorage.write_only`:
+![image showing api scope enabled](https://user-images.githubusercontent.com/68456230/207495012-634ae58c-aa17-4981-b9b0-626e908a0e99.png)
 
 
-### 2.4 Creating authentication json
+
+### 2.5 Creating oauth credentials
 
 ## Part 3 - Preparing files for running
 *With the Raspberry Pi and Google Cloud set up, the final piece of preparation involves getting the provided source code ready to be run.*

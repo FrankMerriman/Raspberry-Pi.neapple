@@ -294,10 +294,10 @@ Set the application type as `web application` and create the credential:
 
 ![image showing application type set to web application](https://user-images.githubusercontent.com/68456230/207496674-87244f2e-a65f-47a0-aeb4-92d7549747b3.png)
 
-With the crendential created, just download the `json` file and move it into the project directory (so that `drive_uploader.py` can read from it)
+With the crendential created, just download the `json` file.
 ![image showing location of download button](https://user-images.githubusercontent.com/68456230/207497230-f8af0cb1-39cd-4dac-813d-14120204e419.png)
 
-![image showing json in project directory](https://user-images.githubusercontent.com/68456230/207497704-cb951e60-2500-4a9f-ba92-3f6d632928fb.png)
+Once downloaded move it into the project directory (so that `drive_uploader.py` can read from it) and rename the file to `credentials.json`
 
 
 ## Part 3 - Preparing files for running
@@ -317,6 +317,13 @@ From within the project directory run `make`. This will compile packet_sniffer.c
 ```
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 ```
+
+You will get warnings that the package is not installed in a directory on `PATH`. Address this by running the following command:
+```
+echo "export PATH=\$PATH:/home/$USER/.local/bin >> ~/.bashrc
+```
+
+Now any new terminal you open will add the location of the google api package to your path
 
 ### 3.3 Generating a valid .pickle file
 

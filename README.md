@@ -221,6 +221,9 @@ sudo service hostapd start
 sudo service dnsmasq start
 ```
 
+My important paragraph.
+{: .alert}
+
 ## Part 2 - Setting up remote storage
 *While my repository contains the python script necessary for uploading files to google drive, it requires a token unique to your own google account to work.*
 

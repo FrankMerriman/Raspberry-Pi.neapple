@@ -16,7 +16,7 @@ The code present in this repo was part of work done for a university security co
 # Preparation
 
 ## Part 1 - Creating a wifi access point
-*Many tutorials I encountered while working on this project took the easy route of using the in-built wifi card of the Rasberry Pi as the access point and providing an internet connection to the Pi through an ethernet cable. This project differs by using two wifi cards so that the Pi can connect to the interenet wirelessly.*
+*Many tutorials I encountered while working on this project took the easy route of using the in-built wifi card of the Rasberry Pi as the access point and providing an internet connection to the Pi through an ethernet cable. This project differs by using two wifi cards so that the Pi can connect to the internet wirelessly.*
 
 ### 1.1 Setting up the Pi
 If the Raspberry Pi being used has never been set up, visit https://www.raspberrypi.com/software/ to download Raspberry Pi OS (formerly referred to as Raspbian). This tutorial was last verified as working on Raspberry Pi OS Bullseye (11).
